@@ -1,2 +1,2 @@
 # Blog
-Some tonnes of bullshit compiled to show my ugliest of all personalities. 
+Some tonnes of grotesque compiled to show my ugliest of all personalities. 
