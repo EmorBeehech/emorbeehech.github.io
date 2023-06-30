@@ -2,13 +2,24 @@
 <html>
   <style>
       body {
-        color: white;
-        background-color: black;
+        color: black;
+        background-color: white;
       }
       a {
         color: pink;
       }
+      .darktheme {
+        baqckground-color: black;
+        color: white;
+      }
     </style>
+  <button onclick="myFunction()">Toggle Theme<>
+  <script>
+    function myFunction(){
+      var element = document.body;
+      element.classList.toggle("darktheme");
+    }
+  </script>
   <head>
     <meta charset="utf-8">
     <meta viewport="" content="width=device-width,initial-scale=1">
