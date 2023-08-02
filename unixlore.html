@@ -9,15 +9,33 @@
         color: white;
         font-family: monospace;
       }
-} </style>
+      .typed-out
+      {
+        overflow: hidden;
+        white-space: nowrap;
+        animation:
+          typing 1s forwards;
+        font-size: 1.6rem;
+        width: 0;
+      }
+      @keyframes typing 
+      {
+        from {width: 0}
+        to {width: 100%}
+      }
+    </style>
+    <script>
+      var i = 0;
+      var txt = 
+    </script>
   <title>Unix Lore</title>
   </head>
   <body>
       -[abh@life]-[~]<br>
-      |__$cd unixlore<br>
+      |__<div class = "typed-out">$cd unixlore<br></div>
       
       -[abh@life]-[~]<br>
-      |__$cat beginning.txt<br>
+      |__<div class = "typed-out">$cat beginning.txt<br></div>
     
       
     It was only because of being with the right group of people while seeking refuge in SAPS Anakkal's St.Benedictine Hostel (from his family's 
