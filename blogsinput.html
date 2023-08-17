@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Blog Post</title>
+    <title>Blog Post</title>
 </head>
 <body>
-    <h1>Create a New Blog Post</h1>
-    <label for="blogTitle">Title: </label>
-    <input type="text" id="blogTitle"><br><br>
-    <label for="blogContent">Content: </label><br>
-    <textarea id="blogContent" rows="5" cols="40"></textarea><br><br>
-    <button id="submitPost">Publish</button>
+    <h1>Blog Posts</h1>
+    <div id="blogContainer"></div>
 
     <script>
-        document.getElementById("submitPost").addEventListener("click", function() {
-            var title = document.getElementById("blogTitle").value;
-            var content = document.getElementById("blogContent").value;
-            // Save the title and content to local storage or send it to a server
-            // For simplicity, let's use local storage in this example
-            var blogData = { title: title, content: content };
-            localStorage.setItem("blogPost", JSON.stringify(blogData));
-            alert("Blog post submitted!");
-        });
+        var blogData = JSON.parse(localStorage.getItem("blogPosts")) || [];
+
+        var blogContainer = document.getElementById("blogContainer");
+
+        if (blogData.length === 0) {
+            blogContainer.innerHTML = "<p>No blog posts available.</p>";
+        } else {
+            var blogHTML = "";
+
+            for (var i = 0; i < blogData.length; i++) {
+                var post = blogData[i];
+                var dateTime = new Date(post.timestamp).toLocaleString();
+                blogHTML += "<div><h2>" + post.title + "</h2><p>" + post.content + "</p><p>Posted on: " + dateTime + "</p></div>";
+            }
+
+            blogContainer.innerHTML = blogHTML;
+        }
     </script>
 </body>
 </html>
