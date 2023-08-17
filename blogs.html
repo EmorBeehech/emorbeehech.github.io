@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Post</title>
+</head>
+<body>
+    <h1>Blog Post</h1>
+    <div id="blogContainer"></div>
+
+    <script>
+        var storedBlogData = localStorage.getItem("blogPost");
+        if (storedBlogData) {
+            var blogData = JSON.parse(storedBlogData);
+            var blogContainer = document.getElementById("blogContainer");
+            var blogHTML = "<h2>" + blogData.title + "</h2><p>" + blogData.content + "</p>";
+            blogContainer.innerHTML = blogHTML;
+        } else {
+            blogContainer.innerHTML = "<p>No blog post available.</p>";
+        }
+    </script>
+</body>
+</html>
