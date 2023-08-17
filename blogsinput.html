@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Blog Post</title>
+</head>
+<body>
+    <h1>Create a New Blog Post</h1>
+    <label for="blogTitle">Title: </label>
+    <input type="text" id="blogTitle"><br><br>
+    <label for="blogContent">Content: </label><br>
+    <textarea id="blogContent" rows="5" cols="40"></textarea><br><br>
+    <button id="submitPost">Publish</button>
+
+    <script>
+        document.getElementById("submitPost").addEventListener("click", function() {
+            var title = document.getElementById("blogTitle").value;
+            var content = document.getElementById("blogContent").value;
+            // Save the title and content to local storage or send it to a server
+            // For simplicity, let's use local storage in this example
+            var blogData = { title: title, content: content };
+            localStorage.setItem("blogPost", JSON.stringify(blogData));
+            alert("Blog post submitted!");
+        });
+    </script>
+</body>
+</html>
