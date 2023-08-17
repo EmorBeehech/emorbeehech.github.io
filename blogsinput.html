@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blog Post</title>
+    <title>Protected Blog Input</title>
 </head>
 <body>
-    <h1>Blog Posts</h1>
-    <div id="blogContainer"></div>
+    <h1>Protected Blog Input</h1>
+    <form action="authenticate.php" method="post">
+        <label for="password">Enter Password: </label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Enter</button>
+    </form>
+
+    <h2>Your Blog Posts</h2>
+    <ul id="blogList"></ul>
 
     <script>
         var blogData = JSON.parse(localStorage.getItem("blogPosts")) || [];
 
-        var blogContainer = document.getElementById("blogContainer");
+        var blogList = document.getElementById("blogList");
 
-        if (blogData.length === 0) {
-            blogContainer.innerHTML = "<p>No blog posts available.</p>";
-        } else {
-            var blogHTML = "";
+        blogData.forEach(function(post, index) {
+            var listItem = document.createElement("li");
+            listItem.innerHTML = post.title + " (<a href='createpost.html?edit=" + index + "'>Edit</a> | <a href='#' onclick='deletePost(" + index + ")'>Delete</a>)";
+            blogList.appendChild(listItem);
+        });
 
-            for (var i = 0; i < blogData.length; i++) {
-                var post = blogData[i];
-                var dateTime = new Date(post.timestamp).toLocaleString();
-                blogHTML += "<div><h2>" + post.title + "</h2><p>" + post.content + "</p><p>Posted on: " + dateTime + "</p></div>";
-            }
-
-            blogContainer.innerHTML = blogHTML;
+        function deletePost(index) {
+            blogData.splice(index, 1);
+            localStorage.setItem("blogPosts", JSON.stringify(blogData));
+            location.reload(); // Refresh the page
         }
     </script>
 </body>
