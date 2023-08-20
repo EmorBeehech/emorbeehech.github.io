@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Protected Blog Input</title>
+  <title>Submit Blog Entry</title>
 </head>
 <body>
-    <h1>Protected Blog Input</h1>
-    <form action="authenticate.php" method="post">
-        <label for="password">Enter Password: </label>
-        <input type="password" id="password" name="password">
-        <button type="submit">Enter</button>
-    </form>
+  <h1>Submit a New Blog Entry</h1>
+  <form id="submitForm">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br><br>
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="5" cols="50" required></textarea><br><br>
+    <button type="submit">Submit</button>
+  </form>
 
-    <h2>Your Blog Posts</h2>
-    <ul id="blogList"></ul>
+  <script>
+    document.getElementById('submitForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
 
-    <script>
-        var blogData = JSON.parse(localStorage.getItem("blogPosts")) || [];
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
 
-        var blogList = document.getElementById("blogList");
+      const response = await fetch('/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, content })
+      });
 
-        blogData.forEach(function(post, index) {
-            var listItem = document.createElement("li");
-            listItem.innerHTML = post.title + " (<a href='createpost.html?edit=" + index + "'>Edit</a> | <a href='#' onclick='deletePost(" + index + ")'>Delete</a>)";
-            blogList.appendChild(listItem);
-        });
-
-        function deletePost(index) {
-            blogData.splice(index, 1);
-            localStorage.setItem("blogPosts", JSON.stringify(blogData));
-            location.reload(); // Refresh the page
-        }
-    </script>
+      if (response.ok) {
+        alert('Blog entry submitted successfully.');
+      } else {
+        alert('Failed to submit blog entry.');
+      }
+    });
+  </script>
 </body>
 </html>
