@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blog Post</title>
+  <title>Blog Entries</title>
 </head>
 <body>
-    <h1>Blog Post</h1>
-    <div id="blogContainer"></div>
+  <h1>Blog Entries</h1>
+  <ul id="blogList"></ul>
 
-    <script>
-        var storedBlogData = localStorage.getItem("blogPost");
-        if (storedBlogData) {
-            var blogData = JSON.parse(storedBlogData);
-            var blogContainer = document.getElementById("blogContainer");
-            var blogHTML = "<h2>" + blogData.title + "</h2><p>" + blogData.content + "</p>";
-            blogContainer.innerHTML = blogHTML;
-        } else {
-            blogContainer.innerHTML = "<p>No blog post available.</p>";
-        }
-    </script>
+  <script>
+    async function fetchBlogEntries() {
+      const response = await fetch('/get-blogs');
+      const data = await response.json();
+
+      const blogList = document.getElementById('blogList');
+      data.forEach(entry => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <h2>${entry.title}</h2>
+          <p>${entry.content}</p>
+          <p>Posted on: ${new Date(entry.timestamp).toLocaleString()}</p>
+        `;
+        blogList.appendChild(li);
+      });
+    }
+
+    fetchBlogEntries();
+  </script>
 </body>
 </html>
