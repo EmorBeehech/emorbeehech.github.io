@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); // Serve static files from the 'public' folder
 
 // A simple password for demonstration purposes
-const correctPassword = 'securepassword';
+const correctPassword = 'password';
 
 app.post('/submit', async (req, res) => {
   const { password, title, content } = req.body;
