@@ -6,6 +6,8 @@
 <body>
   <h1>Submit a New Blog Entry</h1>
   <form id="submitForm">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" required><br><br>
     <label for="content">Content:</label><br>
@@ -17,6 +19,7 @@
     document.getElementById('submitForm').addEventListener('submit', async function (event) {
       event.preventDefault();
 
+      const password = document.getElementById('password').value;
       const title = document.getElementById('title').value;
       const content = document.getElementById('content').value;
 
@@ -25,13 +28,13 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, content })
+        body: JSON.stringify({ password, title, content })
       });
 
       if (response.ok) {
         alert('Blog entry submitted successfully.');
       } else {
-        alert('Failed to submit blog entry.');
+        alert('Failed to submit blog entry. Make sure the password is correct.');
       }
     });
   </script>
