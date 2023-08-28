@@ -12,6 +12,28 @@
     <p></p>-->
 
 <hr size="3" width="100%" color="black">
+    <h3>Aug 28, 2023|8:24 pm IST</h3>
+    <p>
+      So I have decided to walk away from this. No this is not a Post Nut Clarity because the previous blog was a real document of that day. Despite all these efforts
+      to be normal, there are still challenges. I couldn't go out and watch movies now, because the people who I used to watch movies with, seems to be on a tight budget. So I need to come up 
+      with something to make me feel involved. 
+      <br>
+      I tried to do some small CTF puzzles, one of which was mildy annoying me that the level of its difficulty caused a great imapct in me that the reaction with tea and 3 Litres of Fizz drink in my stomach along with this codebreaking frustration caused me to dip and think of something else. 
+      <br>
+      The first challenge was simple. It was just to open a text file embedded within the webpage and all it took was a wget magic. Not sophisticated, and not difficult. 
+      <br>
+      However, the second challenge forced me to look at the hints, and the link embedded with the challenge pop-up of that webpage had more than one file. A python script to decode a ROT13 code to get the flag, and a separate text file with a password to the python script which was written in a bit64 format. 
+      After a few sets of head scratching, I figured out that the password in the text file was not just had to be directly copied and pasted into the python script's execution interface, but that I had to initially use a set of side parameters while trying to execute the script, where you could use -d or -e, followed by the password text file name, to obtain again, a ROT13 ciphered code, which had to be decrypted to obtain the flag. 
+      <br>
+      Then there was another baffling challenge, to find the flag in a jpg file. It would've been grateful if the hint really specified what it meant when it said to look at the file properties, because that was the moment the physical pain and ambiguity I felt after an apparent intoxication of that drink reacting with the evening tea forced me to recline on to the couch while thinking what had to be done to decrypt the jpg file. Was it the next "Cicada" thing? I wondered.
+      And then I saw someone posted on a subreddit about the same challege, where they said it was all about knowing the bit64 characters embedded in it when we use the exiftool and see the image properties. Decoding it finally gave me the flag. And then I stopped there. 
+      
+      
+      
+    </p>
+
+
+<hr size="3" width="100%" color="black">
     <h3>Aug 26, 2023|11:14 pm IST</h3>
     <p>
 So bored even during Onam. I wanted to pack up and LEAVE this damn place for 10 days. Exams were fine. The truce between me and my father continues. 
